@@ -12,3 +12,6 @@ SETUP
  * dbname = digi12
  * login: root/root
  * database will be uploaded to data/digi12.sql
+ 
+* Folders "cache" and "log" in base directory must be created
+ * permission settings "chmod 777"
