@@ -1,0 +1,59 @@
+Config:
+  columns:
+    ip_range_begin: string(15)
+    ip_range_end: string(15)
+    
+User:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    login: string(128)
+    pass: string(128)
+  
+Survey:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    title: {type: string(255), notnull: true}
+    discription: {type:clob, default:NULL}
+    public_id: {type: string(16), notnull: true}
+    limit_ip: boolean
+    limit_location_lat: {type:float, default:NULL}
+    limit_location_long: {type:float, default:NULL}
+    limit_endtime: {type:timestamp, default:NULL}
+    user_id: integer
+  relations:
+    User:
+      onDelete: CASCADE
+      
+Question:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    text: {type: string(255), notnull: true}
+    discription: {type:clob, default:NULL}
+    multichoice: boolean
+    survey_id: integer
+  relations:
+    Survey:
+      onDelete: CASCADE   
+      
+Answer:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    text: {type: string(255), notnull: true}
+    click_count: {type:int, default:0}
+    question_id: integer
+  relations:
+    Question:
+      onDelete: CASCADE      
+      
