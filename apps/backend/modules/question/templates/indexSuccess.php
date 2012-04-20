@@ -10,10 +10,6 @@
     <?php include_partial('question/list_header', array('pager' => $pager)) ?>
   </div>
 
-  <div id="sf_admin_bar">
-    <?php include_partial('question/filters', array('form' => $filters, 'configuration' => $configuration)) ?>
-  </div>
-
   <div id="sf_admin_content">
     <form action="<?php echo url_for('question_collection', array('action' => 'batch')) ?>" method="post">
     <?php include_partial('question/list', array('pager' => $pager, 'sort' => $sort, 'helper' => $helper)) ?>
