@@ -15,7 +15,8 @@ generator:
       actions: ~
       fields:  ~
       list:    ~
-      filter:  ~
+      filter:
+        class: false
       form:    ~
       edit:    ~
       new:     ~
