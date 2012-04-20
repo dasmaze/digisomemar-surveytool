@@ -1,3 +1,21 @@
+answer:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Answer
+    module:               answer
+    prefix_path:          /answer
+    column:               id
+    with_wildcard_routes: true
+
+question:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Question
+    module:               question
+    prefix_path:          /question
+    column:               id
+    with_wildcard_routes: true
+
 survey:
   class: sfDoctrineRouteCollection
   options:

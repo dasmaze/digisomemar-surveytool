@@ -13,4 +13,8 @@ require_once dirname(__FILE__).'/../lib/surveyGeneratorHelper.class.php';
  */
 class surveyActions extends autoSurveyActions
 {
+  public function executeMickeymouse(sfWebRequest $request)
+  {
+    echo "test";
+  }
 }
