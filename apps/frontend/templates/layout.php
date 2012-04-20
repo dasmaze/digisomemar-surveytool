@@ -13,11 +13,13 @@
 	<?php include_stylesheets() ?>
 	<?php include_javascripts() ?>
 </head>
-<body>
-	<?php echo $sf_content ?>
+<body>	
     <div class="container">
+    	<div class="span16"></div>
+    	<h1>a3 Survey Tool</h1>
+    	<?php echo $sf_content ?>
       <footer>
-        <p>&copy; A&sup3; 2012</p>
+        <p>Created by A&sup3; 2012</p>
       </footer>
     </div> <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
