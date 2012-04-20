@@ -15,3 +15,6 @@ SETUP
  
 * Folders "cache" and "log" in base directory must be created
  * permission settings "chmod 777"
+
+* Important: Clear cache!
+ * 'php symfony cc'
