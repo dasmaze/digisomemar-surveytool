@@ -17,6 +17,12 @@ class surveyActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->forward('default', 'module');
+    $today = getdate();
+    $this->hour = $today['hours'];
+  }
+  
+  public function executeShow(sfWebRequest $request)
+  {
+  
   }
 }

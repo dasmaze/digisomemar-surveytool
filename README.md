@@ -18,3 +18,24 @@ SETUP
 
 * Important: Clear cache!
  * 'php symfony cc'
+ 
+DOCUMENTATION
+====
+* JSON format for surveys
+```json
+{ 
+  "questions" : [{
+    "id" : 2,
+    "text" : "Are you a monkey twin?",
+    "multiple" : true,
+    "answers" : [
+      "ja", "nein", "vielleicht"
+    ]
+  },
+  {
+    ...
+  }]
+}
+```
+    
+    
