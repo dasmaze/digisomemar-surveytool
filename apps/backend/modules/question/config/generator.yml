@@ -19,6 +19,6 @@ generator:
         class: false
       form:
       edit:
-        display: [text, discription, multichoice]
+        display: [text, discription, multichoice, answers]
       new:
         display: [text, discription, multichoice]

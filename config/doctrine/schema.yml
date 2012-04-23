@@ -30,6 +30,7 @@ Survey:
   relations:
     User:
       onDelete: CASCADE
+      foreignAlias: Surveys
       
 Question:
   columns:
@@ -43,7 +44,8 @@ Question:
     survey_id: integer
   relations:
     Survey:
-      onDelete: CASCADE   
+      onDelete: CASCADE
+      foreignAlias: Questions
       
 Answer:
   columns:
@@ -56,5 +58,6 @@ Answer:
     question_id: integer
   relations:
     Question:
-      onDelete: CASCADE      
+      onDelete: CASCADE
+      foreignAlias: Answers
       

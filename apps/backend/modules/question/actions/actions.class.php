@@ -32,6 +32,16 @@ class questionActions extends autoQuestionActions
         parent::executeIndex($request);  
     } 
     
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->question = $this->getRoute()->getObject();
+    $this->form = $this->configuration->getForm($this->question);
+   
+    $answers = $this->question->getAnswers();
+    echo count($answers);exit;
+    $this->form->embedForm('answers', new AnswerForm());
+  }
+    
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
       $data = $request->getParameter($form->getName());

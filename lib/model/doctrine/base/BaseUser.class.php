@@ -8,16 +8,16 @@
  * @property integer $id
  * @property string $login
  * @property string $pass
- * @property Doctrine_Collection $Survey
+ * @property Doctrine_Collection $Surveys
  * 
- * @method integer             getId()     Returns the current record's "id" value
- * @method string              getLogin()  Returns the current record's "login" value
- * @method string              getPass()   Returns the current record's "pass" value
- * @method Doctrine_Collection getSurvey() Returns the current record's "Survey" collection
- * @method User                setId()     Sets the current record's "id" value
- * @method User                setLogin()  Sets the current record's "login" value
- * @method User                setPass()   Sets the current record's "pass" value
- * @method User                setSurvey() Sets the current record's "Survey" collection
+ * @method integer             getId()      Returns the current record's "id" value
+ * @method string              getLogin()   Returns the current record's "login" value
+ * @method string              getPass()    Returns the current record's "pass" value
+ * @method Doctrine_Collection getSurveys() Returns the current record's "Surveys" collection
+ * @method User                setId()      Sets the current record's "id" value
+ * @method User                setLogin()   Sets the current record's "login" value
+ * @method User                setPass()    Sets the current record's "pass" value
+ * @method User                setSurveys() Sets the current record's "Surveys" collection
  * 
  * @package    votingtool
  * @subpackage model
@@ -47,7 +47,7 @@ abstract class BaseUser extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Survey', array(
+        $this->hasMany('Survey as Surveys', array(
              'local' => 'id',
              'foreign' => 'user_id'));
     }

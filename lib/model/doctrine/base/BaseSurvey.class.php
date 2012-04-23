@@ -16,7 +16,7 @@
  * @property timestamp $limit_endtime
  * @property integer $user_id
  * @property User $User
- * @property Doctrine_Collection $Question
+ * @property Doctrine_Collection $Questions
  * 
  * @method integer             getId()                  Returns the current record's "id" value
  * @method string              getTitle()               Returns the current record's "title" value
@@ -29,7 +29,7 @@
  * @method timestamp           getLimitEndtime()        Returns the current record's "limit_endtime" value
  * @method integer             getUserId()              Returns the current record's "user_id" value
  * @method User                getUser()                Returns the current record's "User" value
- * @method Doctrine_Collection getQuestion()            Returns the current record's "Question" collection
+ * @method Doctrine_Collection getQuestions()           Returns the current record's "Questions" collection
  * @method Survey              setId()                  Sets the current record's "id" value
  * @method Survey              setTitle()               Sets the current record's "title" value
  * @method Survey              setDiscription()         Sets the current record's "discription" value
@@ -41,7 +41,7 @@
  * @method Survey              setLimitEndtime()        Sets the current record's "limit_endtime" value
  * @method Survey              setUserId()              Sets the current record's "user_id" value
  * @method Survey              setUser()                Sets the current record's "User" value
- * @method Survey              setQuestion()            Sets the current record's "Question" collection
+ * @method Survey              setQuestions()           Sets the current record's "Questions" collection
  * 
  * @package    votingtool
  * @subpackage model
@@ -99,7 +99,7 @@ abstract class BaseSurvey extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasMany('Question', array(
+        $this->hasMany('Question as Questions', array(
              'local' => 'id',
              'foreign' => 'survey_id'));
     }
