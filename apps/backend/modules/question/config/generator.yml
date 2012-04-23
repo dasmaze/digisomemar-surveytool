@@ -13,8 +13,10 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        discription: { label: "Description" }
+      list:
+        display: [text, discription]
       filter:
         class: false
       form:
