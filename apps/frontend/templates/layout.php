@@ -14,10 +14,16 @@
 	<?php include_javascripts() ?>
 </head>
 <body>	
-    <div class="container">
-    	<div class="span16"></div>
-    	<h1>a3 Survey Tool</h1>
-    	<?php echo $sf_content ?>
+    <div class="mobile-container">
+    	<div ></div>
+    	<!--<h1>a3 Survey Tool</h1>-->
+    	<div class="header">
+    		<img src="/img/logo.png" alt="logo">
+    		Survey-Tool
+    	</div>
+    	<div class="survey">    	
+    		<?php echo $sf_content ?>
+    	</div>
       <footer>
         <p>Created by A&sup3; 2012</p>
       </footer>
