@@ -1,5 +1,8 @@
 <h2><?php echo $question->title ?></h2>
 <?php 
+
+echo "<form>";
+
 if($question->multiple) {
     echo "<select multiple=\"multiple\">";
 } else {
@@ -11,5 +14,7 @@ for($i = 0; $i < length($question->answers); $i++) {
 }
 
 echo "</select>";
+
+echo "</form>";
 ?>
 
