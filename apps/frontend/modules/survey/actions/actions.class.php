@@ -21,7 +21,7 @@ class surveyActions extends sfActions
   }
   
   /**
-  * Nur anzeigen der plain Survey Seite, das laden der Fragen dann durch JS 
+  * Nur anzeigen der plain Survey Seite, das laden der Fragen dann durch J  S 
   * 
   * gets: GET with the public surveyID
   * 
@@ -44,6 +44,9 @@ class surveyActions extends sfActions
       	  //var_dump($survey);
       	  $this->setVar('surveyTitle', $survey[0]->getTitle());
           $this->setVar('surveyDesc', $survey[0]->getDiscription());
+      } else {
+          $this->getUser()->setFlash('error', 'There is no survey with this id');
+          $this->redirect('@survey');
       }
       
       
