@@ -10,6 +10,7 @@
  * @property clob $discription
  * @property string $public_id
  * @property boolean $limit_ip
+ * @property boolean $limit_location
  * @property float $limit_location_lat
  * @property float $limit_location_long
  * @property timestamp $limit_endtime
@@ -22,6 +23,7 @@
  * @method clob                getDiscription()         Returns the current record's "discription" value
  * @method string              getPublicId()            Returns the current record's "public_id" value
  * @method boolean             getLimitIp()             Returns the current record's "limit_ip" value
+ * @method boolean             getLimitLocation()       Returns the current record's "limit_location" value
  * @method float               getLimitLocationLat()    Returns the current record's "limit_location_lat" value
  * @method float               getLimitLocationLong()   Returns the current record's "limit_location_long" value
  * @method timestamp           getLimitEndtime()        Returns the current record's "limit_endtime" value
@@ -33,6 +35,7 @@
  * @method Survey              setDiscription()         Sets the current record's "discription" value
  * @method Survey              setPublicId()            Sets the current record's "public_id" value
  * @method Survey              setLimitIp()             Sets the current record's "limit_ip" value
+ * @method Survey              setLimitLocation()       Sets the current record's "limit_location" value
  * @method Survey              setLimitLocationLat()    Sets the current record's "limit_location_lat" value
  * @method Survey              setLimitLocationLong()   Sets the current record's "limit_location_long" value
  * @method Survey              setLimitEndtime()        Sets the current record's "limit_endtime" value
@@ -69,6 +72,9 @@ abstract class BaseSurvey extends sfDoctrineRecord
              'length' => 16,
              ));
         $this->hasColumn('limit_ip', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('limit_location', 'boolean', null, array(
              'type' => 'boolean',
              ));
         $this->hasColumn('limit_location_lat', 'float', null, array(
