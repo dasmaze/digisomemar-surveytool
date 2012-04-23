@@ -17,12 +17,21 @@ class surveyActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $today = getdate();
-    $this->hour = $today['hours'];
+    $this->form = new SurveyIdForm();
   }
   
   public function executeShow(sfWebRequest $request)
   {
-  
+    $this->setVar('surveyId', $request->getParameter("surveyId", 0));
+      
+    if ($this->getVar('surveyId') == 0) {
+        $this->getUser()->setFlash('error', 'You need to specify a survey id');
+        $this->redirect('@survey');
+    }
+    
+    $survey = Doctrine_Core::getTable('Survey')->find($this->surveyId);
+    $this->setVar('surveyTitle', $survey->getTitle());
+    
+    parent::executeIndex($request);  
   }
 }

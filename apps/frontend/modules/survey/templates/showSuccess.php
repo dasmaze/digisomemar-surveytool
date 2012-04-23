@@ -1,3 +1,3 @@
-<p>Hello, world!</p>
-<p>Or should I say good evening? It is already <?php echo $hour ?>.</p>
+<h1>Survey <?php echo $surveyId ?></h1>
+
 
