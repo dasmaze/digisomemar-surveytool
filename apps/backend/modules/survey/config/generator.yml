@@ -13,11 +13,20 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
+      fields:
+        title: { label: "Title" }
+        discription: { label: "Description" }
+        public_id: { label: "Public ID" }
+        limit_ip: { label: "Limit to IP range" }
+        limit_location_lat: { label: "Limit to latitude" }
+        limit_location_long: { label: "Limit to longitude" }
+        limit_endtime: { label: "End of the survey" }
+        user: { label: "User ID" }
       list:    
         display: [title, public_id]
       filter:
         display: [title, public_id]
-      form:    ~
+      form:
+        display: [title, discription, limit_ip, limit_location, limit_endtime]
       edit:    ~
       new:     ~
