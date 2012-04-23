@@ -44,14 +44,12 @@ class surveyActions extends sfActions
       	  //var_dump($survey);
       	  $this->setVar('surveyTitle', $survey[0]->getTitle());
           $this->setVar('surveyDesc', $survey[0]->getDiscription());
+          $this->setVar('surveyId', $survey[0]->getId());
       }
-      
-      
-      //parent::executeIndex($request);  
   }
   
   /**
-  * gets: surveyID, position (optional)
+  * gets: surveyID, position (optional)	
   * 
   * gives away: json (see README.txt)
   *
