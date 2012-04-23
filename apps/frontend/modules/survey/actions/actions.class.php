@@ -57,7 +57,12 @@ class surveyActions extends sfActions
   */
   public function executeShowQuestions(sfWebRequest $request)
   {
-  	
+  	  $this->setVar('surveyId', $request->getParameter("id", 0));
+  	  $query = Doctrine_Core::getTable('question')->createQuery('q')
+  	  ->where('q.survey_id = ?', $this->getVar('surveyId'));
+	  $questions = $query->execute();
+	  
+	  $this->setVar('jsonQuestions', json_encode($questions));	  
   }
   
   /**
