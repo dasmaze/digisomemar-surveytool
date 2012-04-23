@@ -17,6 +17,8 @@ generator:
       list:    ~
       filter:
         class: false
-      form:    ~
-      edit:    ~
-      new:     ~
+      form:
+      edit:
+        display: [text, discription, multichoice]
+      new:
+        display: [text, discription, multichoice]
