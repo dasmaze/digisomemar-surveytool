@@ -4,7 +4,7 @@
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: survey, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules
@@ -14,3 +14,7 @@ default_index:
 
 default:
   url:   /:module/:action/*
+  
+survey:
+  url:   /
+  param: { module: survey, action: index }
