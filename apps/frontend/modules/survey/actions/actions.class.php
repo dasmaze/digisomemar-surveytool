@@ -61,7 +61,7 @@ class surveyActions extends sfActions
   */
   public function executeShowQuestions(sfWebRequest $request)
   {
-      $timestamp = $request->getParameter('ts', 0);
+      //$timestamp = $request->getParameter('ts', 0);
   	  $this->setVar('surveyId', $request->getParameter("id", 0));
   	  $questions = null;
   	  while ( count($questions) < 1 ) {
@@ -83,19 +83,31 @@ class surveyActions extends sfActions
       //$result = json_encode($questions);
       //return $this->renderText($result);
        
-	  
-  	  return $this->renderPartial('survey/questionPartial');
+	  return $this->renderPartial('survey/questionPartial');
   }
   
   /**
-  * gets: ??
+  * gets: POST Data --> komma seperierte Liste von AnswerIds
   * 
-  * gives away: ??
+  * gives away: nur in db den count erhöhen
   *
   * @param sfRequest $request A request object
   */
   public function executeSubmitQuestionAnswer(sfWebRequest $request)
   {
-    
+      $answerString = $request->getParameter("answers", 0);
+      $answerArray = explode(",", $answerString);
+      $result = "";
+      
+      foreach ($answerArray as $answerID) {
+      	$result .= Doctrine_Query::create()
+  		->update('answer a')
+  		->set('a.click_count', 'a.click_count + 1')
+  		->where('a.id = ?', $answerID)
+  		->execute();
+      }
+      
+	  $this->setTemplate(false);
+	  return $this->renderText($result);
   }
 }
