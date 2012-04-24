@@ -13,21 +13,26 @@ require_once dirname(__FILE__).'/../lib/surveyGeneratorHelper.class.php';
  */
 class surveyActions extends autoSurveyActions
 {
+  public function executeResults(sfWebRequest $request)
+  {
+
+  }
+
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $data = $request->getParameter($form->getName());
-    
+
     $form_data = $form->getObject()->getData();
     $public_id = $form_data['public_id'];
     //var_dump($data);
     //die();
-    
+
     if (empty($public_id)) {
         $data['public_id'] = rand(1000, 9999);
     } else {
         $data['public_id'] = $public_id;
     }
-    
+
     $duration = $request->getParameter('duration');
     if (!empty($duration)) {
         $duration_unit = $request->getParameter('duration_unit');
@@ -37,8 +42,8 @@ class surveyActions extends autoSurveyActions
             case 0: $duration_s += $duration * 60; break;
             case 1: $duration_s += $duration * 3600; break;
             case 2: $duration_s += $duration * 3600 * 24; break;
-        }        
-        
+        }
+
         $year = date('Y', $duration_s);
         $month = date('m', $duration_s);
         $day = date('d', $duration_s);
@@ -50,15 +55,15 @@ class surveyActions extends autoSurveyActions
         $data['limit_endtime']['hour'] = $hour;
         $data['limit_endtime']['minute'] = $minute;
     }
-    
+
     if ($data['limit_location'] == 'on') {
         // TODO: Get and save the location the survey is limited to
         $data['limit_location_lat'] = 0;
         $data['limit_location_long'] = 0;
     }
-    
+
     $form->bind($data, $request->getFiles($form->getName()));
-    
+
     if ($form->isValid())
     {
       $notice = $form->getObject()->isNew() ? 'The survey with public ID ' . $data['public_id'] . ' was created successfully.' : 'The survey with public ID ' . $data['public_id'] . ' was updated successfully.';
