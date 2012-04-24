@@ -1,3 +1,6 @@
+<?php use_helper('I18N', 'Date') ?>
+<?php include_partial('survey/assets') ?>
+
 <div id="sf_admin_container">
   <div id="sf_admin_footer">
     <?php foreach ($questions as $question): ?>
