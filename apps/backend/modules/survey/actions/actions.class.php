@@ -15,7 +15,9 @@ class surveyActions extends autoSurveyActions
 {
   public function executeResults(sfWebRequest $request)
   {
-
+      $this->surveyId = $request->getParameter('id');
+      $this->survey = Doctrine_Core::getTable('Survey')->find($this->surveyId);
+      $this->questions = $this->survey->getQuestions();
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
