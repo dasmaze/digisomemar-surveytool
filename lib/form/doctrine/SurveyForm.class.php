@@ -11,6 +11,7 @@
 class SurveyForm extends BaseSurveyForm
 {
   public function configure()
-  {
+  {      
+      //$this->getWidget('limit_endtime')->setHidden(true);
   }
 }

@@ -16,12 +16,52 @@ class surveyActions extends autoSurveyActions
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $data = $request->getParameter($form->getName());
-    $data['public_id'] = "10";
+    
+    $form_data = $form->getObject()->getData();
+    $public_id = $form_data['public_id'];
+    //var_dump($data);
+    //die();
+    
+    if (empty($public_id) || $public_id == " ") {
+        $data['public_id'] = rand(1000, 9999);
+    } else {
+        $data['public_id'] = $public_id;
+    }
+    
+    $duration = $request->getParameter('duration');
+    if (!empty($duration)) {
+        $duration_unit = $request->getParameter('duration_unit');
+        $duration_s = time();
+        var_dump($duration_s);
+        switch($duration_unit) {
+            case 0: $duration_s += $duration * 60; break;
+            case 1: $duration_s += $duration * 3600; break;
+            case 2: $duration_s += $duration * 3600 * 24; break;
+        }        
+        
+        $year = date('Y', $duration_s);
+        $month = date('m', $duration_s);
+        $day = date('d', $duration_s);
+        $hour= date('H', $duration_s);
+        $minute = date('i', $duration_s);
+        $data['limit_endtime']['year'] = $year;
+        $data['limit_endtime']['month'] = $month;
+        $data['limit_endtime']['day'] = $day;
+        $data['limit_endtime']['hour'] = $hour;
+        $data['limit_endtime']['minute'] = $minute;
+    }
+    
+    if ($data['limit_location'] == 'on') {
+        // TODO: Get and save the location the survey is limited to
+        $data['limit_location_lat'] = 0;
+        $data['limit_location_long'] = 0;
+    }
+    
     $form->bind($data, $request->getFiles($form->getName()));
     
     if ($form->isValid())
     {
-      $notice = $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.';
+      $notice = $form->getObject()->isNew() ? 'The survey with public ID ' . $data['public_id'] . ' was created successfully.' : 'The survey with public ID ' . $data['public_id'] . ' was updated successfully.';
 
       try {
         $survey = $form->save();
