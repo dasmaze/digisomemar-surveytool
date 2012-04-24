@@ -3,27 +3,25 @@
 */
 // 1. Anfrage timestamp der letzten question 0 ab der aktuelle zeit
 
-
-
 $(document).ready(function() {
   // getting questions  
   var id = $("#survey-id").text();
-  
-  $.get(["http://ip.dev/frontend_dev.php/survey/showQuestions?id=", id].join(","), function(data) {
-      //$('.result').html(data);
-      alert('Load was performed: ' + data);
-  });  
+  var path = "http://ip.dev/frontend_dev.php/survey/showQuestions?id=" + id;
+  performPolling(path);
 });
 
-function performPolling(id) {
-  while(true) {
-    $.get(["http://ip.dev/frontend_dev.php/survey/showQuestions?id", id].join(","), function(data) {
-      //$('.result').html(data);
-      alert('Load was performed.');
-    });
-  }
-  
+function performPolling(path) {
+  $.ajax({
+    type: "GET",
+    url: path,
+    timeout: 10000  
+  }).done(function( msg ) {
+    $(".survey").append(msg);    
+    // this is for longpolling
+    //performPolling(path);
+  });
 }
+
 
 $("form").submit(function() {
 	$.post( url, { s: term },
