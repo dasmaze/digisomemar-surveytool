@@ -23,15 +23,26 @@ function performPolling(path) {
 }
 
 
-$("form").submit(function() {
-	$.post( url, { s: term },
-      function( data ) {
-          var content = $( data ).find( '#content' );
-          $( "#result" ).empty().append( content );
-      }
-  );
+// $("form").submit(function() {
 
-});
+//   alert("Wohooo");
+
+//   var values = $('.answerForm').serialize();
+//   alert(values);
+
+//   alert("Wohooo");
+
+
+//   // GET
+  
+// 	// $.post( url, { s: term },
+//  //      function( data ) {
+//  //          var content = $( data ).find( '#content' );
+//  //          $( "#result" ).empty().append( content );
+//  //      }
+//  //  );
+
+// });
 
 /*
  	

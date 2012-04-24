@@ -1,7 +1,7 @@
 <?php foreach($questionArray as $question) { ?>
 	<div>
 	    <h3><?php echo $question['text'];  ?></h3>
-	    <form class="answerForm">
+	    <form class="answerForm" onsubmit="submitForm();">
 	    <?php foreach($question['answers'] as $answer) { ?>
 	        <input type="<?php echo $question['type'] ?>" 
 	        name="<?php echo 'answer' . $question['id'] ?>" 
@@ -9,7 +9,8 @@
 	            <?php echo $answer['text'] ?>
 	        </input>
 	    <?php } ?>
-	        <input type="submit" />
+	        <input type="submit" class="submit-button"/>
+
 	    </form>
 	</div>
 <?php } ?>
