@@ -16,7 +16,7 @@ generator:
       fields:
         title: { label: "Title" }
         discription: { label: "Description" }
-        public_id: { label: "Public ID" }
+        public_id: { label: "Public ID"}
         limit_ip: { label: "Limit to IP range" }
         limit_location_lat: { label: "Limit to latitude" }
         limit_location_long: { label: "Limit to longitude" }
