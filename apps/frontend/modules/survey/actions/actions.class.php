@@ -37,8 +37,9 @@ class surveyActions extends sfActions
           $this->redirect('@survey');
       }
         
-      $query = Doctrine_Core::getTable('survey')->createQuery('s')->where('s.public_id = ?', $this->getVar('publicId'));
-	  $survey = $query->execute();
+      $query = Doctrine_Core::getTable('survey')->createQuery('s')
+      	->where('s.public_id = ? AND s.limit_endtime <= CURRENT_TIME()', $this->getVar('publicId'));
+	  $survey = $query->fetchArray();
 	       
       if (count($survey) == 1) {
       	  //var_dump($survey);
@@ -61,11 +62,27 @@ class surveyActions extends sfActions
   public function executeShowQuestions(sfWebRequest $request)
   {
   	  $this->setVar('surveyId', $request->getParameter("id", 0));
-  	  $query = Doctrine_Core::getTable('question')->createQuery('q')
-  	  ->where('q.survey_id = ?', $this->getVar('surveyId'));
-	  $questions = $query->execute();
+  	  $questions = null;
+  	  while ( count($questions) < 1 ) {
+  	  	$questionQuery = Doctrine_Core::getTable('question')->createQuery('q')
+  	  	->where('q.survey_id = ?', $this->getVar('surveyId'));
+	    $questions = $questionQuery->fetchArray();
+  	  }
+  	    	  
+	  //Add Answers
+	  foreach ($questions as &$question) {
+  	      $answerQuery = Doctrine_Core::getTable('answer')->createQuery('a')
+  	      	->where('a.question_id = ?', $question['id']);
+	      $question['answers'] = $answerQuery->fetchArray();
+	      //= $this->newlineToHTMLBreak(
+	  }
+	  	  
+	  $this->setVar('questionArray', $questions);
+      //$result = json_encode($questions);
+      //return $this->renderText($result);
+       
 	  
-	  $this->setVar('jsonQuestions', json_encode($questions));	  
+  	  return $this->renderPartial('survey/questionPartial');
   }
   
   /**
