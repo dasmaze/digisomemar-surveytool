@@ -38,7 +38,7 @@ class surveyActions extends sfActions
       }
         
       $query = Doctrine_Core::getTable('survey')->createQuery('s')
-      	->where('s.public_id = ? AND s.limit_endtime >= NOW()', $this->getVar('publicId'));
+      	->where('s.public_id = ? AND (s.limit_endtime >= NOW() OR s.limit_endtime IS NULL)', $this->getVar('publicId'));
 	  $survey = $query->fetchArray();
 	       
       if (count($survey) == 1) {
@@ -61,6 +61,7 @@ class surveyActions extends sfActions
   */
   public function executeShowQuestions(sfWebRequest $request)
   {
+      session_write_close();
       //$timestamp = $request->getParameter('ts', 0);
   	  $this->setVar('surveyId', $request->getParameter("id", 0));
   	  $questions = null;
@@ -68,6 +69,7 @@ class surveyActions extends sfActions
   	  	$questionQuery = Doctrine_Core::getTable('question')->createQuery('q')
   	  	->where('q.survey_id = ?', $this->getVar('surveyId'));
 	    $questions = $questionQuery->fetchArray();
+	    usleep(500000);
   	  }
   	    	  
 	  //Add Answers

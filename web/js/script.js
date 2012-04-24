@@ -6,7 +6,7 @@
 $(document).ready(function() {
   // getting questions  
   var id = $("#survey-id").text();
-  var path = "http://ip.dev/frontend_dev.php/survey/showQuestions?id=" + id;
+  var path = "http://localhost:8080/frontend_dev.php/survey/showQuestions?id=" + id + "&";
   performPolling(path);
 });
 
