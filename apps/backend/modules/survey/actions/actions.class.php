@@ -22,7 +22,7 @@ class surveyActions extends autoSurveyActions
     //var_dump($data);
     //die();
     
-    if (empty($public_id)) {
+    if (empty($public_id) || $public_id == " ") {
         $data['public_id'] = rand(1000, 9999);
     } else {
         $data['public_id'] = $public_id;
