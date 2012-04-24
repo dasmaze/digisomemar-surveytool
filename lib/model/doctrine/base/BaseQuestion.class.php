@@ -11,7 +11,7 @@
  * @property boolean $multichoice
  * @property integer $survey_id
  * @property Survey $Survey
- * @property Doctrine_Collection $Answer
+ * @property Doctrine_Collection $Answers
  * 
  * @method integer             getId()          Returns the current record's "id" value
  * @method string              getText()        Returns the current record's "text" value
@@ -19,14 +19,14 @@
  * @method boolean             getMultichoice() Returns the current record's "multichoice" value
  * @method integer             getSurveyId()    Returns the current record's "survey_id" value
  * @method Survey              getSurvey()      Returns the current record's "Survey" value
- * @method Doctrine_Collection getAnswer()      Returns the current record's "Answer" collection
+ * @method Doctrine_Collection getAnswers()     Returns the current record's "Answers" collection
  * @method Question            setId()          Sets the current record's "id" value
  * @method Question            setText()        Sets the current record's "text" value
  * @method Question            setDiscription() Sets the current record's "discription" value
  * @method Question            setMultichoice() Sets the current record's "multichoice" value
  * @method Question            setSurveyId()    Sets the current record's "survey_id" value
  * @method Question            setSurvey()      Sets the current record's "Survey" value
- * @method Question            setAnswer()      Sets the current record's "Answer" collection
+ * @method Question            setAnswers()     Sets the current record's "Answers" collection
  * 
  * @package    votingtool
  * @subpackage model
@@ -67,8 +67,12 @@ abstract class BaseQuestion extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasMany('Answer', array(
+        $this->hasMany('Answer as Answers', array(
              'local' => 'id',
              'foreign' => 'question_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable(array(
+             ));
+        $this->actAs($timestampable0);
     }
 }

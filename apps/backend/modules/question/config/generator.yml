@@ -13,12 +13,14 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        discription: { label: "Description" }
+      list:
+        display: [text, discription, created_at]
       filter:
         class: false
       form:
       edit:
-        display: [text, discription, multichoice]
+        display: [text, discription, multichoice, answers]
       new:
         display: [text, discription, multichoice]

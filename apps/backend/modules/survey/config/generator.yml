@@ -22,8 +22,8 @@ generator:
         limit_location_long: { label: "Limit to longitude" }
         limit_endtime: { label: "End of the survey" }
         user: { label: "User ID" }
-      list:    
-        display: [title, public_id]
+      list:
+        display: [title]
       filter:
         display: [title, public_id]
       form:

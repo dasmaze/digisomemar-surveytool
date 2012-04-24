@@ -20,6 +20,8 @@ abstract class BaseQuestionForm extends BaseFormDoctrine
       'discription' => new sfWidgetFormTextarea(),
       'multichoice' => new sfWidgetFormInputCheckbox(),
       'survey_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Survey'), 'add_empty' => true)),
+      'created_at'  => new sfWidgetFormDateTime(),
+      'updated_at'  => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -28,6 +30,8 @@ abstract class BaseQuestionForm extends BaseFormDoctrine
       'discription' => new sfValidatorString(array('required' => false)),
       'multichoice' => new sfValidatorBoolean(array('required' => false)),
       'survey_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Survey'), 'required' => false)),
+      'created_at'  => new sfValidatorDateTime(),
+      'updated_at'  => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('question[%s]');
