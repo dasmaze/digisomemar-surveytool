@@ -43,9 +43,9 @@ class surveyActions extends sfActions
 	       
       if (count($survey) == 1) {
       	  //var_dump($survey);
-      	  $this->setVar('surveyTitle', $survey[0]->getTitle());
-          $this->setVar('surveyDesc', $survey[0]->getDiscription());
-          $this->setVar('surveyId', $survey[0]->getId());
+      	  $this->setVar('surveyTitle', $survey[0]['title']);
+          $this->setVar('surveyDesc', $survey[0]['discription']);
+          $this->setVar('surveyId', $survey[0]['id']);
       } else {
           $this->getUser()->setFlash('error', 'There is no survey with this id');
           $this->redirect('@survey');
@@ -74,6 +74,7 @@ class surveyActions extends sfActions
   	      $answerQuery = Doctrine_Core::getTable('answer')->createQuery('a')
   	      	->where('a.question_id = ?', $question['id']);
 	      $question['answers'] = $answerQuery->fetchArray();
+	      $question['type'] = ($question['multichoice'] ? 'checkbox' : 'radio');
 	      //= $this->newlineToHTMLBreak(
 	  }
 	  	  
