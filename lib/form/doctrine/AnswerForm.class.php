@@ -12,5 +12,10 @@ class AnswerForm extends BaseAnswerForm
 {
   public function configure()
   {
+      unset($this->widgetSchema['click_count']);
+      $this->widgetSchema['question_id'] = new sfWidgetFormInputHidden();
+      
+      $this->validatorSchema['id'] = new sfValidatorPass();
+      $this->validatorSchema['text'] = new sfValidatorPass();
   }
 }

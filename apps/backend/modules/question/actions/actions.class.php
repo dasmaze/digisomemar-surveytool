@@ -32,21 +32,64 @@ class questionActions extends autoQuestionActions
         parent::executeIndex($request);  
     } 
     
+    protected function createFormFromObject($obj) {
+        $this->form = $this->configuration->getForm($obj);
+        $this->form->getWidgetSchema()->setNameFormat('qa[%s]');
+        
+        $answers = $obj->getAnswers();
+        $formName = 'answers';
+        $n = count($answers);
+        $answFormArray = array();
+        $absNumForms = 10;
+        for ($i = 0; $i < $absNumForms; $i++) {
+            $answForm = new AnswerForm($i < $n ? $answers[$i] : null);
+
+            $answFormArray[$i] = $answForm;
+        }
+
+        $this->form->embedFormsForEach($formName, $answFormArray, $absNumForms);
+    }
+
+
+    public function executeNew(sfWebRequest $request) {
+        parent::executeNew($request);
+        
+        $this->form->getWidgetSchema()->setNameFormat('qa[%s]');
+    }
+    
+    public function executeCreate(sfWebRequest $request)
+    {
+        $this->form = $this->configuration->getForm();
+        $this->form->getWidgetSchema()->setNameFormat('qa[%s]');
+        $this->question = $this->form->getObject();
+
+        $this->processForm($request, $this->form);
+
+        $this->setTemplate('new');
+    }
+
+
+    public function executeUpdate(sfWebRequest $request)
+    {
+        $this->question = $this->getRoute()->getObject();
+        $this->createFormFromObject($this->question);
+
+        $this->processForm($request, $this->form);
+
+        $this->setTemplate('edit');
+    }
+    
   public function executeEdit(sfWebRequest $request)
   {
     $this->question = $this->getRoute()->getObject();
-    $this->form = $this->configuration->getForm($this->question);
-   
-    $answers = $this->question->getAnswers();
-    echo count($answers);exit;
-    $this->form->embedForm('answers', new AnswerForm());
+    $this->createFormFromObject($this->question);
   }
     
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
       $data = $request->getParameter($form->getName());
       $data['survey_id'] = $this->getUser()->getAttribute('currentSurveyId');
-      
+     
       $form->bind($data, $request->getFiles($form->getName()));
        
     if ($data['survey_id'] && $form->isValid())
@@ -54,7 +97,22 @@ class questionActions extends autoQuestionActions
       $notice = $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.';
 
       try {
-        $question = $form->save();
+          if (!$form->getObject()->isNew()) {
+              $q = Doctrine::getTable('Answer')->createQuery('a')->where('a.question_id = ?', $form->getObject()->getId());
+              $q->delete();
+              $q->execute();
+          }
+          
+          foreach ($data['answers'] as $answData) {
+              if (is_string($answData['text']) && strlen($answData['text']) > 0) {
+                $answObj = new Answer();
+                $answObj->setText($answData['text']);
+                $answObj->setQuestionId($form->getObject()->getId());
+                $answObj->save();
+              }
+          }
+          
+          $question = $form->save();
       } catch (Doctrine_Validator_Exception $e) {
 
         $errorStack = $form->getObject()->getErrorStack();

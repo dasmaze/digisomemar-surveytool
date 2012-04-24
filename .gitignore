@@ -2,5 +2,5 @@ cache/*
 log/*
 
 /nbproject/private/
-
+config/databases.yml
 *~
