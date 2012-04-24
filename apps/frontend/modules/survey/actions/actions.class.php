@@ -61,6 +61,7 @@ class surveyActions extends sfActions
   */
   public function executeShowQuestions(sfWebRequest $request)
   {
+      $timestamp = $request->getParameter('ts', 0);
   	  $this->setVar('surveyId', $request->getParameter("id", 0));
   	  $questions = null;
   	  while ( count($questions) < 1 ) {
@@ -95,5 +96,6 @@ class surveyActions extends sfActions
   */
   public function executeSubmitQuestionAnswer(sfWebRequest $request)
   {
+    
   }
 }
