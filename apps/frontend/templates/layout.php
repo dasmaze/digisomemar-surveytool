@@ -38,15 +38,31 @@
 
 <script>
 
-    $("form").submit(function() {
-        //alert("TEST");
-        console.log("hello console");
-    });
+    function submitForm(id) {
+        var selector = "#" + id;
+        var choices = $(selector).serializeArray();
 
-    function submitForm() {
-        console.log("foo");
-        alert(this);
-        return false;        
+        var answers = ""
+        jQuery.each(choices, function() {
+            answers += this.value + ",";            
+        });
+
+        if(answers.length > 0) answers = answers.slice(0, answers.length - 1);        
+
+        var path = "http://ip.dev/frontend_dev.php/survey/submitQuestionAnswer?answers=" + answers;
+        // $.get(path, function(data){
+        //     alert("Data Loaded: " + data);
+        // });
+        alert(path);
+        $.ajax({
+            type: "GET",
+            url: path              
+        }).done(function( msg ) {
+            alert("Success" +  msg);
+            //$(selector).fadeOut("slow");                  
+        });        
+
+        return false;             
     }
 
     // $(".submit-button").click(function() {
