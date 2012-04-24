@@ -16,7 +16,7 @@ generator:
       fields:
         discription: { label: "Description" }
       list:
-        display: [text, discription]
+        display: [text, discription, created_at]
       filter:
         class: false
       form:

@@ -33,6 +33,7 @@ Survey:
       foreignAlias: Surveys
       
 Question:
+  actAs: [Timestampable]
   columns:
     id:
       type: integer
