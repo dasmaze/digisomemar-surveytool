@@ -1,13 +1,28 @@
 /* Author:
 
 */
+// 1. Anfrage timestamp der letzten question 0 ab der aktuelle zeit
 
 
-function getQuestions() {
-	var id = $("#survey-id").text;	
-	$.getJSON(["http://ip.dev/", id].join(","), function(data) {    
- 	
-  });
+
+$(document).ready(function() {
+  // getting questions  
+  var id = $("#survey-id").text();
+  
+  $.get(["http://ip.dev/frontend_dev.php/survey/showQuestions?id=", id].join(","), function(data) {
+      //$('.result').html(data);
+      alert('Load was performed: ' + data);
+  });  
+});
+
+function performPolling(id) {
+  while(true) {
+    $.get(["http://ip.dev/frontend_dev.php/survey/showQuestions?id", id].join(","), function(data) {
+      //$('.result').html(data);
+      alert('Load was performed.');
+    });
+  }
+  
 }
 
 $("form").submit(function() {
