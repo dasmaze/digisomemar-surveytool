@@ -36,6 +36,43 @@
 	s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
 
+<script>
+
+    $("form").submit(function() {
+        //alert("TEST");
+        console.log("hello console");
+    });
+
+    function submitForm() {
+        console.log("foo");
+        alert(this);
+        return false;        
+    }
+
+    // $(".submit-button").click(function() {
+    //     console.log("hello console");
+    // });
+
+
+  // var values = $('.answerForm').serialize();
+  // alert(values);
+
+  // alert("Wohooo");
+
+
+  // GET ?answers=1,2,3,4
+  
+    // $.post( url, { s: term },
+ //      function( data ) {
+ //          var content = $( data ).find( '#content' );
+ //          $( "#result" ).empty().append( content );
+ //      }
+ //  );
+
+
+</script>
+
+
 </body>
 </html>
 
