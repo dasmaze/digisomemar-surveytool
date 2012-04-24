@@ -33,7 +33,9 @@ footer {
 	width: auto;
 }
 
-
+.hidden {
+	visibility: hidden;
+}
 
 
 
