@@ -24,10 +24,8 @@ class surveyActions extends autoSurveyActions
 
     $form_data = $form->getObject()->getData();
     $public_id = $form_data['public_id'];
-    //var_dump($data);
-    //die();
 
-    if (empty($public_id)) {
+    if (!isset($public_id) || $public_id instanceof Doctrine_Null) {
         $data['public_id'] = rand(1000, 9999);
     } else {
         $data['public_id'] = $public_id;
