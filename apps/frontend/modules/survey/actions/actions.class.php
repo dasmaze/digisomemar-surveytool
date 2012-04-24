@@ -38,7 +38,7 @@ class surveyActions extends sfActions
       }
         
       $query = Doctrine_Core::getTable('survey')->createQuery('s')
-      	->where('s.public_id = ? AND s.limit_endtime >= CURRENT_TIME()', $this->getVar('publicId'));
+      	->where('s.public_id = ? AND s.limit_endtime >= NOW()', $this->getVar('publicId'));
 	  $survey = $query->fetchArray();
 	       
       if (count($survey) == 1) {

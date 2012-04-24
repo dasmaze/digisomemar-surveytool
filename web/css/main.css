@@ -4,7 +4,6 @@
    Author:
    ========================================================================== */
 
-
 body {
 	color: black;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -31,6 +30,10 @@ footer {
 
 .container {
 	width: auto;
+}
+
+.sf_admin_form_field_limit_endtime {
+    display: none; 
 }
 
 .hidden {
