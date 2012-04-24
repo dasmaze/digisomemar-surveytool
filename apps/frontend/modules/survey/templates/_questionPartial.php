@@ -9,6 +9,7 @@
 	            <?php echo $answer['text'] ?>
 	        </input>
 	    <?php } ?>
+	        <input type="hidden" name="timestamp" value="<?php echo $question['created_at'] ?>" />
 	        <input type="submit" />
 	    </form>
 	</div>
