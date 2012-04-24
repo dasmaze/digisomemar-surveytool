@@ -53,13 +53,12 @@
         // $.get(path, function(data){
         //     alert("Data Loaded: " + data);
         // });
-        alert(path);
         $.ajax({
             type: "GET",
             url: path              
         }).done(function( msg ) {
-            alert("Success" +  msg);
-            //$(selector).fadeOut("slow");                  
+            $(selector).fadeOut("slow");  
+            return false;                
         });        
 
         return false;             
