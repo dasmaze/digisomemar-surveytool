@@ -109,7 +109,8 @@ class surveyActions extends sfActions
   		->execute();
       }
       
-	  $this->setTemplate(false);
-	  return $this->renderText($result);
+	  $this->getResponse()->setHttpHeader("X-JSON", '('.$result.')');
+ 
+      return sfView::HEADER_ONLY;
   }
 }

@@ -49,7 +49,7 @@
 
         if(answers.length > 0) answers = answers.slice(0, answers.length - 1);        
 
-        var path = "http://ip.dev/frontend_dev.php/survey/submitQuestionAnswer?answers=" + answers;
+        var path = "http://localhost:8080/frontend_dev.php/survey/submitQuestionAnswer?answers=" + answers;
         // $.get(path, function(data){
         //     alert("Data Loaded: " + data);
         // });
